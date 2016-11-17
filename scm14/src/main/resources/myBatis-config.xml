@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--通过别名简化对类的使用
+       主要作用：让mapper中的resultMap的属性中的name不用写全类名
+    -->
+    <typeAliases>
+        <!--<typeAlias type="com.lw.scm.bean.Dept" alias="Dept"/>-->
+        <package name="com.lw.scm.bean"/>
+    </typeAliases>
+
+    <mappers>
+        <!--<mapper resource="com/lw/scm/bean/DeptMapper.xml"/>-->
+    </mappers>
+
+</configuration>
