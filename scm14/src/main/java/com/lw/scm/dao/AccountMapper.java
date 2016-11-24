@@ -1,10 +1,8 @@
 package com.lw.scm.dao;
 
-
 import com.lw.scm.bean.Account;
 
-public interface AccountMapper extends BaseMapper<Account> {
+public interface AccountMapper {
 
-
-    public Account login(Account account);
+    Account login(Account account) ;
 }

@@ -1,8 +1,6 @@
 package com.lw.scm.bean;
 
-import java.io.Serializable;
-
-public class Account implements Serializable {
+public class Account {
     private Integer accId;
 
     private String accLogin;

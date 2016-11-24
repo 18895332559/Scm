@@ -17,7 +17,6 @@ public class BaseAction {
     @Resource
     ServletContext application;
 
-
     @RequestMapping("/goURL/{folder}/{file}")
     public String goURL(@PathVariable String folder, @PathVariable String file) {
         return "forward:/WEB-INF/" + folder + "/" + file + ".jsp";

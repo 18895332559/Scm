@@ -1,17 +1,68 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lw.scm.dao.SupplierMapper" >
-  <resultMap id="supplierResultMap" type="com.lw.scm.bean.Supplier" >
-    <id column="sup_id" property="supId" jdbcType="INTEGER" />
-    <result column="sup_name" property="supName" jdbcType="VARCHAR" />
-    <result column="sup_linkman" property="supLinkman" jdbcType="VARCHAR" />
-    <result column="sup_phone" property="supPhone" jdbcType="VARCHAR" />
-    <result column="sup_address" property="supAddress" jdbcType="VARCHAR" />
-    <result column="sup_remark" property="supRemark" jdbcType="VARCHAR" />
-  </resultMap>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lw.scm.dao.SupplierMapper">
+    <resultMap id="supplierResultMap" type="com.lw.scm.bean.Supplier">
+        <id column="sup_id" jdbcType="INTEGER" property="supId"/>
+        <result column="sup_name" jdbcType="VARCHAR" property="supName"/>
+        <result column="sup_linkman" jdbcType="VARCHAR" property="supLinkman"/>
+        <result column="sup_phone" jdbcType="VARCHAR" property="supPhone"/>
+        <result column="sup_address" jdbcType="VARCHAR" property="supAddress"/>
+        <result column="sup_remark" jdbcType="VARCHAR" property="supRemark"/>
+        <result column="sup_pay" jdbcType="DOUBLE" property="supPay"/>
+        <result column="sup_type" jdbcType="INTEGER" property="supType"/>
+    </resultMap>
 
-  <insert id="insert" parameterType="supplier">
-    INSERT INTO supplier (sup_name) VALUES (#{supName})
-  </insert>
+    <select id="selectPageList" parameterType="com.lw.scm.bean.Page" resultMap="supplierResultMap">
+        <!-- 这里自己改为具体字段 -->
+        select * from supplier
+        <where>
+            <!-- 这里自己添加其它字段的判断，可以扩展多个字段的查询 -->
+            <if test="paramEntity.supName!=null">sup_name like #{paramEntity.supName}</if>
+            <if test="paramEntity.supAddress != null ">and sup_address LIKE  #{paramEntity.supAddress}</if>
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <select id="selectCount" parameterType="com.lw.scm.bean.Page" resultType="int">
+        select count(1) from supplier
+        <where>
+            <!-- 这里自己添加其它字段的判断，可以扩展多个字段的查询 -->
+            <if test="paramEntity.supName!=null">sup_name like #{paramEntity.supName}</if>
+            <if test="paramEntity.supAddress!=null">and sup_address LIKE #{paramEntity.supAddress}</if>
+        </where>
+    </select>
+
+    <!--多条件查询-->
+    <select id="selectPageListUseDyc" parameterType="Page" resultMap="supplierResultMap">
+        SELECT * FROM supplier
+        <where>
+            <if test="paramEntity.supName!=null">and sup_name like #{paramEntity.supName}</if>
+            <if test="paramEntity.supAddress!=null">and sup_address like #{paramEntity.supAddress}</if>
+        </where>
+        limit #{start},#{rows}
+    </select>
+
+    <select id="selectPageCountUseDyc" parameterType="Page" resultType="Integer">
+        SELECT COUNT (1) FROM supplier
+        <if test="paramEntity.supName!=null">and sup_name like #{paramEntity.supName}</if>
+        <if test="paramEntity.supAddress!=null">and sup_address like #{paramEntity.supAddress}</if>
+    </select>
+
+
+    <delete id="deleteList">
+        DELETE FROM supplier WHERE sup_id IN
+        <foreach close=")" collection="array" item="pk" open="(" separator=",">
+            #{pk}
+        </foreach>
+    </delete>
+
+    <insert id="insert" parameterType="Supplier">
+        INSERT INTO supplier (sup_id,sup_name,sup_linkman,sup_phone,sup_address,sup_remark,sup_pay,sup_type)
+        VALUES (#{supId},#{supName},#{supLinkman},#{supPhone},#{supAddress},#{supRemark},#{supPay},#{supType})
+    </insert>
+
+    <update id="update" parameterType="Supplier">
+        UPDATE  supplier SET sup_name=#{supName},sup_linkman=#{supLinkman},sup_phone=#{supPhone},
+		sup_address=#{supAddress},sup_remark=#{supRemark},sup_type=#{supType},sup_pay=#{supPay} WHERE sup_id = #{supId}
+    </update>
 
 </mapper>

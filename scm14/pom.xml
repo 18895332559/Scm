@@ -198,7 +198,6 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.7.4</version>
         </dependency>
-
     </dependencies>
 
 </project>

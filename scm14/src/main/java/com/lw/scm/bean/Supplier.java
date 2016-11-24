@@ -1,8 +1,8 @@
 package com.lw.scm.bean;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class Supplier implements Serializable {
+public class Supplier {
     private Integer supId;
 
     private String supName;
@@ -14,6 +14,10 @@ public class Supplier implements Serializable {
     private String supAddress;
 
     private String supRemark;
+
+    private BigDecimal supPay;
+
+    private String supType;
 
     public Integer getSupId() {
         return supId;
@@ -61,5 +65,35 @@ public class Supplier implements Serializable {
 
     public void setSupRemark(String supRemark) {
         this.supRemark = supRemark == null ? null : supRemark.trim();
+    }
+
+    public BigDecimal getSupPay() {
+        return supPay;
+    }
+
+    public void setSupPay(BigDecimal supPay) {
+        this.supPay = supPay;
+    }
+
+    public String getSupType() {
+        return supType;
+    }
+
+    public void setSupType(String supType) {
+        this.supType = supType == null ? null : supType.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "supId=" + supId +
+                ", supName='" + supName + '\'' +
+                ", supLinkman='" + supLinkman + '\'' +
+                ", supPhone='" + supPhone + '\'' +
+                ", supAddress='" + supAddress + '\'' +
+                ", supRemark='" + supRemark + '\'' +
+                ", supPay=" + supPay +
+                ", supType='" + supType + '\'' +
+                '}';
     }
 }

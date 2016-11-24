@@ -46,4 +46,14 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <servlet>
+        <servlet-name>SysServlet</servlet-name>
+        <servlet-class>com.lw.scm.servlet.SysServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SysServlet</servlet-name>
+        <url-pattern>/servlet/SysServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

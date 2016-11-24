@@ -18,24 +18,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 </pre>
 <div id="loginDiv">
     <form id="ff" method="post" action="${proPath}/account/login.action">
         <div>
             <label for="accLogin">账号:</label>
             <!-- 采用 js验证 -->
-            <input type="text" id="accLogin" name="accLogin"/>
+            <input type="text" id="accLogin" name="accLogin" value="admin"  />
         </div>
         <div>
             <label for="accPass">密码:</label>
@@ -43,7 +32,7 @@
             <input class="easyui-validatebox" type="text" name="name"
                 data-options="required:true,missingMessage:'请填写密码！'" />
                  -->
-            <input type="text" id="accPass" name="accPass"/>
+            <input type="text" id="accPass" name="accPass" value="admin"/>
         </div>
 
     </form>
@@ -90,7 +79,6 @@
                 if ($("#ff").form("validate")) { // 这是真正验证的代码
                     //提交
                     $("#ff").submit();
-
                 }
 
             }

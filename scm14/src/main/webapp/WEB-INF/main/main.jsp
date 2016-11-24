@@ -15,7 +15,6 @@
         $(function () {
             $("a[title]").click(function () {//找到title属性的
                 var text = this.href;
-                alert(text);
                 if ($("#tt").tabs("exists", this.title)) {
                     alert("存在了");
                 } else {
@@ -45,7 +44,6 @@
      style="width:150px;">
     <div id="aa" class="easyui-accordion"
          style="width:300px;height:200px;">
-
         <div title="基础数据录入">
             <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
             <ul style="list-style: none;padding: 0px;margin:0px;">
@@ -57,8 +55,16 @@
                 </li>
             </ul>
         </div>
-        <div title="Title3">
-            title3
+        <div title="采购管理">
+            <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
+            <ul style="list-style: none;padding: 0px;margin:0px;">
+                <li style="padding: 6px;"><a href="${proPath}/base/goURL/buyorder/insert.action" title="商品采购"
+                                             style="text-decoration: none;display: block;font-weight:bold;">商品采购</a>
+                </li>
+                <li style="padding: 6px;"><a href="${proPath}/base/goURL/goods/goodslist.action" title="商品退货"
+                                             style="text-decoration: none;display: block;font-weight:bold;">商品退货</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
@@ -72,5 +78,6 @@
         </div>
     </div>
 </div>
+<div id="win"></div>
 </body>
 </html>
