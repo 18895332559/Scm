@@ -18,20 +18,10 @@
                 //url:'${proPath}/supplier/selectPage.action', //通过关键字查询
                 //支持多条件查询
                 //url:'${proPath}/supplier/selectPageUseDyc.action',
-
                 fitColumns: true,
                 nowrapL: true,
                 idField: 'goodsId',
                 rownumbers: true,
-                /* pagination:true,
-                 pageSize:5,
-                 pageList:[2,5,10,20], */
-
-                /*     queryParams: {
-                 supName: '%%',
-                 supAddress:'%%'
-                 },  */
-
                 toolbar: [{
                     iconCls: 'icon-add',
                     text: '选择商品',
@@ -45,8 +35,6 @@
                             content: "<iframe src='${proPath}/base/goURL/goods/select.action' height='100%' width='100%' frameborder='0px' ></iframe>"
                         });
                     }
-
-
                 }, '-', {
                     iconCls: 'icon-remove',
                     text: '删除商品',
@@ -71,6 +59,41 @@
                     text: '提交采购',
                     handler: function () {
                         alert('提交采购');
+                        //获取要提交的数据
+                        var rows = $("#dg").datagrid("getRows");
+                        console.info(rows);
+                        //把对象转成JSON格式的字符串
+                        rows = JSON.stringify(rows);
+                        console.info(rows);
+                        alert(rows);
+                        var proth = "${proPath}";
+                        alert("proth:" + proth);
+                        //将要采购的数据提交到服务器
+                        //注意：这个是get提交
+                        /*  $("#ff").form("submit", {
+                         url: "
+                        ${proPath}/buyOrder/insert.action",
+                         onSubmit: function (param) {
+                         param.rows = rows;
+                         return true;
+                         },
+                         success: function (data) {
+                         //自己处理返回的信息
+                         alert(data);
+                         }
+                         });*/
+                        //提交采购到服务端
+                        $('#ff').form('submit', {
+                            url: ' ${proPath}/buyOrder/insert.action',
+                            onSubmit: function (param) {
+                                param.rows = rows;
+                                return true;
+                            },
+                            success: function (data) {
+                                //自己处理返回的信息
+                                alert(data);
+                            }
+                        });
                     }
 
                 }],
@@ -117,6 +140,9 @@
                 }]]
             });
 
+            //让供应商输入框只读
+            $("#supName").attr("readonly",true);
+
             //使用供应商查询
             $('#supName').searchbox({
                 searcher: function (value, name) {
@@ -132,8 +158,6 @@
                 },
                 prompt: '请选择供应商'
             });
-
-
         });
     </script>
 </head>
@@ -142,10 +166,10 @@
 <form style="padding:15px;margin:0px;background:#eee;" id="ff" action="">
     请填写采购信息：<br>
     供应商：<input type="hidden" id="supId" name="supId"/>
-    <input type="text" id="supName" name="supName"/>
+    <input type="text" id="supName" name="supName" />
     仓库：<input type="text" id="shId" name="shId"/>
     日期：<input type="text" id="boDate"
-              class="easyui-datebox" name="boDate" required="required"></input>
+              class="easyui-datebox" name="boDate" required="required"/>
 
     应付：<input type="text" id="boPayable" name="boPayable"/><br>
     已付：<input type="text" id="boPaid" name="boPaid"/>

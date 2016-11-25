@@ -2,6 +2,7 @@ package com.lw.scm.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class BuyOrder {
     private String boId;
@@ -25,6 +26,16 @@ public class BuyOrder {
     private String boAttn;
 
     private Integer boOperator;
+
+    private List<BuyOrderDetail> buyOrderDetailList ;
+
+    public List<BuyOrderDetail> getBuyOrderDetailList() {
+        return buyOrderDetailList;
+    }
+
+    public void setBuyOrderDetailList(List<BuyOrderDetail> buyOrderDetailList) {
+        this.buyOrderDetailList = buyOrderDetailList;
+    }
 
     public String getBoId() {
         return boId;
@@ -128,6 +139,7 @@ public class BuyOrder {
                 ", boRemark='" + boRemark + '\'' +
                 ", boAttn='" + boAttn + '\'' +
                 ", boOperator=" + boOperator +
+                ", buyOrderDetailList=" + buyOrderDetailList +
                 '}';
     }
 }

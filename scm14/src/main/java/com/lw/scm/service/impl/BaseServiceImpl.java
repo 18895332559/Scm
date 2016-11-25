@@ -1,10 +1,8 @@
 package com.lw.scm.service.impl;
 
+import com.lw.scm.bean.AccountRecords;
 import com.lw.scm.bean.Page;
-import com.lw.scm.dao.AccountMapper;
-import com.lw.scm.dao.BaseMapper;
-import com.lw.scm.dao.GoodsMapper;
-import com.lw.scm.dao.SupplierMapper;
+import com.lw.scm.dao.*;
 import com.lw.scm.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +25,13 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     protected BaseMapper<T> baseMapper;
 
     @Autowired
-    protected GoodsMapper goodsMapper ;
+    protected GoodsMapper goodsMapper;
+    @Autowired
+    protected BuyOrderMapper buyOrderMapper;
+    @Autowired
+    protected BuyOrderDetailMapper buyOrderDetailMapper;
+    @Autowired
+    protected AccountRecordsMapper accountRecordsMapper;
 
     //这个
     @PostConstruct

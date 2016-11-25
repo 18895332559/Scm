@@ -1,6 +1,8 @@
 package com.lw.scm.dao;
 
 
-public interface BuyOrderMapper {
+import com.lw.scm.bean.BuyOrder;
+
+public interface BuyOrderMapper extends BaseMapper<BuyOrder>{
 
 }

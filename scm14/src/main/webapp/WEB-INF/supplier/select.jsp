@@ -5,23 +5,25 @@
 <head>
     <title>供应商列表</title>
     <script type="text/javascript">
+        var win = parent.$("iframe[title='商品采购']").get(0).contentWindow;//返回ifram页面窗体对象（window)
         $(function () {
             $('#dg').datagrid({
                 url: '${proPath}/supplier/selectPage.action',
                 toolbar: [{
                     iconCls: 'icon-add',
-                    text: '新增',
+                    text: '选择供应商',
                     handler: function () {
-                        //由于id为win的div是在父窗口上面的,所以需要
-                        parent.$("#win").window({
-                            width: 600,
-                            height: 400,
-                            // 定义是否将窗体显示为模式化窗口。
-                            modal: true,
-                            content: "<iframe src='${proPath}/base/goURL/supplier/insert.action' height='100%' width='100%' frameborder='0px' ></iframe>"
+                       //获取选中行
+                        var row = $("#dg").datagrid("getSelected");
+                        alert(row.supId);
+                        win.$("#ff").form("load",{
+                            supId:row.supId,
+                            supName:row.supName
                         });
+                        //关闭当前页
+                        parent.$("#win").window("close");
                     }
-                },  '-', {
+                }, '-', {
                     /*这个不是一个真正的搜索框，需要用easyui来设置*/
                     text: "地址:<input type='text' id='supAddress' name='supAddress'/>"
                 }, '-', {
@@ -60,6 +62,7 @@
                 rownumbers: true,
                 pagination: true,
                 pageSize: 5,
+                singleSelected: true,
                 pageList: [3, 5, 10, 20],
                 queryParams: {
                     supName: "%%",

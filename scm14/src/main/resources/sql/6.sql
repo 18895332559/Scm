@@ -1,0 +1,11 @@
+USE scm ;
+select * from account;
+select * from supplier;
+select * from goods;
+select * from sys_param;
+select * from store_house;
+select * from account_records;
+select * from buy_order;
+select * from buy_order_detail;
+select * from return_order;
+select * from return_order_detail;

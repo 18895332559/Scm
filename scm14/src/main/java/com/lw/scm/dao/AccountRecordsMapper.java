@@ -1,6 +1,8 @@
 package com.lw.scm.dao;
 
 
-public interface AccountRecordsMapper {
+import com.lw.scm.bean.AccountRecords;
+
+public interface AccountRecordsMapper extends BaseMapper<AccountRecords>{
 
 }

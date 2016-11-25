@@ -3,7 +3,7 @@ package com.lw.scm.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class AccountRecords {
+public class AccountRecords  {
     private String arId;
 
     private Integer supId;
